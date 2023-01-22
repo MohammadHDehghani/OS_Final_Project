@@ -1,11 +1,12 @@
-from multiprocessing import Process, Queue, Value, Semaphore
+from multiprocessing import Process, Queue, Value
 import  RightSide, LeftSide
+from MySemaphore import Semaphore
 
 
 
 def main():
-    sem1 = Semaphore(1)
-    sem2 = Semaphore(1)
+    sem1 = Semaphore(2)
+    sem2 = Semaphore(2)
     street = Value('d',0)
     id = Value('d',1)
     

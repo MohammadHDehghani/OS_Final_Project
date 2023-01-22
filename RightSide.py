@@ -7,18 +7,18 @@ from Car import Car
 def producer(sem, queue, id,):
     print('Producer: Running', flush=True)
     while True:
-        sem.acquire()
+        sem.wait(1)
         value = Car(id.value)
         id.value += 1
         sleep(0.5)
         queue.put(value)
-        sem.release()
+        sem.signal()
 
 
 def consumer(sem, queue, street):
     print('Consumer: Running', flush=True)
     while True:
-        sem.acquire()
+        sem.wait(1)
         item = queue.get()     
         street.value = item.id
         print('car id: ', item.id, 'sleep: ', item.time)
@@ -26,6 +26,6 @@ def consumer(sem, queue, street):
         sleep(item.time)
         if temp != street.value:
             print('Process conflict!')
-        sem.release()
+        sem.signal()
    
 
