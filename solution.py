@@ -1,9 +1,10 @@
-from multiprocessing import Process, Value, Array, Queue, Semaphore
+from multiprocessing import Process, Value, Array, Queue
 from time import sleep
 from Processes import *
+from MySemaphore import Semaphore
 
 if __name__ == '__main__':
-    semaphore = Semaphore(1)
+    semaphore = Semaphore(5)
     num = Value('d', 0.0)
     arr = Array('i', range(2))
     q = Queue()
